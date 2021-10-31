@@ -18,16 +18,27 @@ public class Libro extends Articulo{
         this.genero=genero;
     }
     public static void crearLibro(){
+        System.out.println("Creando Libro");
         Scanner sc=new Scanner(System.in);
+        System.out.println("ingrece un titulo");
         String titulo=sc.next();
+        System.out.println("ingrese autor");
         String autor=sc.next();
+        System.out.println("ingrese codigo");
         String codigo=sc.next();
+        System.out.println("ingrese precio");
         String precio=sc.next();
+        System.out.println("ingrese estado boolean");
         String estado=sc.next();
+        System.out.println("ingrese stock");
         String stock=sc.next();
+        System.out.println("tiempo");
         String tiempo=sc.next();
+        System.out.println("prestamo");
         String prestamo=sc.next();
+        System.out.println("tematica");
         String tematica=sc.next();
+        System.out.println("ingresegenero");
         String genero=sc.next();
         try{
             Libreria.libros.add(new Libro(titulo,autor,codigo,precio,estado,stock,tiempo,prestamo,tematica,genero));

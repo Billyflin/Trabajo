@@ -5,28 +5,79 @@ import com.opencsv.CSVReaderBuilder;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-//        Libro.crearLibro();
-//        Gestor.guardarLibros();
         try {
+            leerArchivos();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        verDisponibilidad();
+        crearArticulo();
+        guardarArchivos();
+    }
+    public static void verDisponibilidad(){
+        for (Libro l: Libreria.libros
+             ) {
+            if(l.disponible()){
+                System.out.println(l.getTitulo() + " esta Disponible");
+            }else if (!l.disponible()){
+                System.out.println(l.getTitulo() + " no esta Disponible");
+
+            }
+        }
+    }
+
+    public static void leerArchivos() throws FileNotFoundException {
             csvReadD();
             csvReadC();
             csvReadB();
             csvReadA();
+    }
+    public static void guardarArchivos(){
             Gestor.guardarDiarios();
             Gestor.guardarRevistas();
             Gestor.guardarDocumentos();
             Gestor.guardarLibros();
-            Diario.crearDiario();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        Libro.showAll();
-
     }
+    public static void crearArticulo(){
+        showMenu();
+        switch(validar(4)){
+            case 1 -> Libro.crearLibro(); 
+            case 2 -> Documento.crearDocumento();
+            case 3 -> Diario.crearDiario();
+            case 4 -> Revista.crearRevista();
+        }
+    }
+
+    private static void showMenu() {
+        System.out.println("MENU");
+        System.out.println("1) Crear Libro");
+        System.out.println("1) Crear Documento");
+        System.out.println("1) Crear Diario");
+        System.out.println("1) Crear Revista");
+    }
+
+    public static int validar(int x) {
+        int n = -1;
+        do {
+            //Scanner ponerlo dentro del DO, y dentro de una función
+            Scanner teclado = new Scanner(System.in);
+            //System.out.println("ingrese otro numero");
+            try {
+                n = teclado.nextInt();
+            } catch (Exception e) {
+                System.out.println("Error! Por favor, >Ingrese un número<");
+            }
+            if (n < 0 || n > x) {
+                System.out.println("Ingrese un numero válido");
+            }
+        } while (n < 0 || n > x);
+        return n;
+    }
+
     static final String librosRuta ="src/main/resources/libros.CSV";
     static final String diariosRuta ="src/main/resources/diario.CSV";
     static final String revistaRuta ="src/main/resources/revistas.CSV";

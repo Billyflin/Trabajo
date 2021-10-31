@@ -14,19 +14,29 @@ public class Documento extends Articulo{
         this.prestamo= Integer.parseInt(prestamo);
         this.clasificacion= tematica;
     }
-    public static void crearRevista(){
+    public static void crearDocumento(){
+        System.out.println("Creando documento");
         Scanner sc=new Scanner(System.in);
+        System.out.println("ingrece un titulo");
         String titulo=sc.next();
+        System.out.println("ingrese autor");
         String autor=sc.next();
+        System.out.println("ingrese codigo");
         String codigo=sc.next();
+        System.out.println("ingrese precio");
         String precio=sc.next();
+        System.out.println("ingrese estado boolean");
         String estado=sc.next();
+        System.out.println("ingrese stock");
         String stock=sc.next();
+        System.out.println("tiempo");
         String tiempo=sc.next();
+        System.out.println("prestamo");
         String prestamo=sc.next();
+        System.out.println("clasificacion");
         String tematica=sc.next();
         try{
-            Libreria.revistas.add(new Revista(titulo,autor,codigo,precio,estado,stock,tiempo,prestamo,tematica));
+            Libreria.documentos.add(new Documento(titulo,autor,codigo,precio,estado,stock,tiempo,prestamo,tematica));
         }catch(Exception e){
             e.printStackTrace();
         }
